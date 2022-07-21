@@ -1,5 +1,5 @@
-from dataclasses import dataclass
-from typing import List, Dict
+from dataclasses import dataclass, asdict
+from typing import List, Dict, Union, Type
 
 
 @dataclass
@@ -10,7 +10,7 @@ class InfoMessage:
     distance: float
     speed: float
     calories: float
-    TXT: str = (
+    TXT_MESSAGE: str = (
         'Тип тренировки: {training_type}; '
         'Длительность: {duration:.3f} ч.; '
         'Дистанция: {distance:.3f} км; '
@@ -20,13 +20,7 @@ class InfoMessage:
 
     def get_message(self) -> str:
         """Возвращает строку сообщения."""
-        return self.TXT.format(
-            training_type=self.training_type,
-            duration=self.duration,
-            distance=self.distance,
-            speed=self.speed,
-            calories=self.calories
-        )
+        return self.TXT_MESSAGE.format(**asdict(self))
 
 
 class Training:
@@ -55,9 +49,7 @@ class Training:
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-        raise NotImplementedError(
-            f'Не посчитаны калории в классе {self.__class__.__name__}'
-        )
+        raise NotImplementedError
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
@@ -133,17 +125,20 @@ class Swimming(Training):
                 * self.COEFF_CAL_2 * self.weight)
 
 
-def read_package(workout_type: str, data: List[float]) -> Training:
+def read_package(
+    workout_type: str, 
+    data: List[Union[float, int]]
+) -> Training:
     """Прочитать данные полученные от датчиков."""
-    type_comparison: Dict[str, float] = {
+    type_comparison: Dict[str, Type[Training]] = {
         'SWM': Swimming,
         'RUN': Running,
         'WLK': SportsWalking
     }
     if workout_type not in type_comparison:
-        raise ValueError('Неизвестный тип тренировки')
-    else:
-        return type_comparison[workout_type](*data)
+        raise ValueError('Неизвестный тип тренировки. Допустимые значения: "SWM", "RUN", "WLK".')
+
+    return type_comparison[workout_type](*data)
 
 
 def main(training: Training) -> None:
