@@ -136,7 +136,10 @@ def read_package(
         'WLK': SportsWalking
     }
     if workout_type not in type_comparison:
-        raise ValueError('Неизвестный тип тренировки. Допустимые значения: "SWM", "RUN", "WLK".')
+        raise ValueError(
+            'Неизвестный тип тренировки. ' 
+            'Допустимые значения: "SWM", "RUN", "WLK".'
+        )
 
     return type_comparison[workout_type](*data)
 
