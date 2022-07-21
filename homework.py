@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import List, Dict
 
+
 @dataclass
 class InfoMessage:
     """Информационное сообщение о тренировке."""
@@ -20,11 +21,11 @@ class InfoMessage:
     def get_message(self) -> str:
         """Возвращает строку сообщения."""
         return self.TXT.format(
-            training_type = self.training_type,
-            duration = self.duration,
-            distance = self.distance,
-            speed = self.speed,
-            calories = self.calories
+            training_type=self.training_type,
+            duration=self.duration,
+            distance=self.distance,
+            speed=self.speed,
+            calories=self.calories
         )
 
 
@@ -102,7 +103,8 @@ class SportsWalking(Training):
         return (
             (self.COEFF_CAL_1 * self.weight
             + (self.get_mean_speed()**2 // self.height)
-            * self.COEFF_CAL_2 * self.weight) * self.duration * self.MIN_IN_H
+            * self.COEFF_CAL_2 * self.weight)
+            * self.duration * self.MIN_IN_H
         )
 
 
