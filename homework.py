@@ -135,10 +135,13 @@ def read_package(
         'RUN': Running,
         'WLK': SportsWalking
     }
+
+    type_string = ', '.join(type_comparison)
+
     if workout_type not in type_comparison:
         raise ValueError(
-            'Неизвестный тип тренировки. '
-            'Допустимые значения: "SWM", "RUN", "WLK".'
+            f'Неизвестный тип тренировки. ' 
+            f'Допустимые значения: {type_string}.'
         )
 
     return type_comparison[workout_type](*data)
