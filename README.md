@@ -10,7 +10,7 @@
 * Works on Linux, Windows, macOS
 
 ### Запуск проекта 
-Клонировать репозиторий и перейти в него в командной строке:
+1. Клонировать репозиторий и перейти в него в командной строке:
 
 ```
 git clone git@github.com:olyakorchagina/Fitness_Tracker.git
@@ -19,7 +19,7 @@ git clone git@github.com:olyakorchagina/Fitness_Tracker.git
 cd Fitness_Tracker
 ```
 
-Cоздать и активировать виртуальное окружение:
+2. Cоздать и активировать виртуальное окружение:
 
 ```
 python3 -m venv env
@@ -27,7 +27,7 @@ python3 -m venv env
 ```
 source env/bin/activate
 ```
-Установить зависимости из файла requirements.txt:
+3. Установить зависимости из файла requirements.txt:
 ```
 python3 -m pip install --upgrade pip
 ```
