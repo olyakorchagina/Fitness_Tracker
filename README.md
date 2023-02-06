@@ -14,8 +14,6 @@
 
 ```
 git clone git@github.com:olyakorchagina/Fitness_Tracker.git
-```
-```
 cd Fitness_Tracker
 ```
 
@@ -23,14 +21,10 @@ cd Fitness_Tracker
 
 ```
 python3 -m venv env
-```
-```
 source env/bin/activate
 ```
 3. Установить зависимости из файла requirements.txt:
 ```
 python3 -m pip install --upgrade pip
-```
-```
 pip install -r requirements.txt
 ```
